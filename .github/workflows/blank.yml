@@ -9,11 +9,9 @@ jobs:
     steps:
       - run: |
           {
-            echo 'TEST_ENV<<EOF',
             ls
             ls -a
             ls -al
-            echo EOF
           } >> $GITHUB_OUTPUT
         id: ls
     outputs:
