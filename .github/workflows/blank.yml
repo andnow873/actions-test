@@ -19,6 +19,7 @@ jobs:
     outputs:
       ls: ${{steps.ls.outputs}}
   run:
+    needs: build
     runs-on: ubuntu-latest
     env:
       TEST_ENV: ${{needs.build.outputs.ls}}
