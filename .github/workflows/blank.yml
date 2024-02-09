@@ -1,0 +1,26 @@
+name: CI
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          {
+            echo 'TEST_ENV<<EOF',
+            ls
+            ls -a
+            ls -al
+            echo EOF
+          } >> $GITHUB_OUTPUT
+        id: ls
+    outputs:
+      ls: ${{steps.ls.outputs}}
+  run:
+    runs-on: ubuntu-latest
+    env:
+      TEST_ENV: ${{needs.build.outputs.ls}}
+    steps:
+    - run: echo "test env is $TEST_ENV"
