@@ -8,11 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          {
-            ls
-            ls -a
-            ls -al
-          } >> $GITHUB_OUTPUT
+          cmd1=$(ls)
+          cmd2=$(pwd)
+          cmd3=$(whoami)          
+          echo test=<<EOF >> $GITHUB_OUTPUT
+          $cmd1
+          $cmd2
+          $cmd3
+          EOF
         id: ls
     outputs:
       ls: ${{steps.ls.outputs}}
