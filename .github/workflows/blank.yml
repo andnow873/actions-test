@@ -13,7 +13,12 @@ jobs:
     steps:
       - run: ls / > test.txt
       - id: step1
-        run: echo "test=$(cat test.txt)" >> "$GITHUB_OUTPUT"
+        run: |
+          {
+          echo "test=<<EOF"
+          ls /
+          echo EOF
+          } >> "$GITHUB_OUTPUT"
       - id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
   job2:
